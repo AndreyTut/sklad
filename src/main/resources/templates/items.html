@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Storage</title>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/js/jquery-2.1.4.min.js}"></script>
+
+</head>
+<body>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Vendor</th>
+        <th>Name</th>
+        <th>Room</th>
+        <th>Code</th>
+        <th>Quantity</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.vendor.getName()}">data</td>
+        <td th:text="${item.getName()}">data</td>
+        <td th:text="${item.getRoom().getNumber()}">data</td>
+        <td th:text="${item.getCode()}">data</td>
+        <td th:text="${item.getQuantity()}">data</td>
+        <td><a th:href="@{/edititem/{id}(id=${item.getId()})}">
+            <img src="../static/images/pencil.png" alt="update"
+                 th:src="@{images/pencil.png}"/>
+        </a></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/additem}">
+    Add new position
+    <img src="../static/images/add.png"
+         th:src="@{images/add.png}"/>
+</a>
+</body>
+</html>

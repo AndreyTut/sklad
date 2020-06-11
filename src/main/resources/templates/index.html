@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/js/jquery-2.1.4.min.js}"></script>
+</head>
+<body>
+<h1>Welcome to aniger storage app</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h3>rooms list:</h3>
+            <ul>
+                <li th:each="room: ${rooms}">
+                    <a th:text="${room.getNumber()}"
+                       th:href="@{/getbyroom/{id}(id=${room.getId()})}">room1</a>
+                </li>
+                <li th:remove="all"><a>room2</a></li>
+                <li th:remove="all"><a>room3</a></li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <h3>vendors list:</h3>
+            <ul>
+                <li th:each="vendor: ${vendors}">
+                    <a th:text="${vendor.getName()}"
+                       th:href="@{/getbyvendor/{id}(id=${vendor.getId()})}">vendor1</a>
+                </li>
+                <li th:remove="all"><a>vendor1</a></li>
+                <li th:remove="all"><a>vendor1</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
