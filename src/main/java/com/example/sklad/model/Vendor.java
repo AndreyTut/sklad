@@ -3,6 +3,7 @@ package com.example.sklad.model;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Table(name = "vendors")
 public class Vendor extends AbstractBaseEntity {
 
-    @NotNull
+    @NotEmpty
     @Size(min = 2, max = 50)
     private String name;
 

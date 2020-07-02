@@ -2,8 +2,9 @@ package com.example.sklad.model;
 
 import com.sun.istack.NotNull;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
@@ -11,7 +12,6 @@ import java.util.List;
 public class Room extends AbstractBaseEntity {
 
     @NotNull
-    @Size(min=2, max = 4)
     private Integer number;
 
     @OneToMany(mappedBy = "room")

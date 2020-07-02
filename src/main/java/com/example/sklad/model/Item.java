@@ -1,14 +1,16 @@
 package com.example.sklad.model;
 
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "items")
 public class Item extends AbstractBaseEntity {
 
-    @NotNull
+    @NotEmpty
     private String name;
 
     private String code;

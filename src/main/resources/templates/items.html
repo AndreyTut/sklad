@@ -12,7 +12,9 @@
 
 </head>
 <body>
-
+<div class="container" th:replace="fragments/header :: header">
+    <p>header</p>
+</div>
 <table class="table table-striped">
     <thead>
     <tr>
@@ -22,7 +24,7 @@
         <th>Code</th>
         <th>Quantity</th>
         <th>Edit</th>
-        <th>Add</th>
+<!--        <th>Add</th>-->
     </tr>
     </thead>
     <tbody>
@@ -36,11 +38,11 @@
             <img src="../static/images/pencil.png" alt="update"
                  th:src="@{/images/pencil.png}"/>
         </a></td>
-        <td><a th:href="@{/addexisting/{id}(id=${item.getId()})}">
-            <img src="../static/images/add.png" alt="add"
-                 th:src="@{/images/add.png}"/>
-        </a>
-        </td>
+<!--        <td><a th:href="@{/addexisting/{id}(id=${item.getId()})}">-->
+<!--            <img src="../static/images/add.png" alt="add"-->
+<!--                 th:src="@{/images/add.png}"/>-->
+<!--        </a>-->
+<!--        </td>-->
     </tr>
     </tbody>
 </table>
@@ -55,5 +57,9 @@
     <img src="../static/images/scanner.png"
          th:src="@{/images/scanner.png}"/>
 </a>
+
+<div class="container" th:replace="fragments/footer :: footer">
+    <p>footer</p>
+</div>
 </body>
 </html>

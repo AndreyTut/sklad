@@ -8,8 +8,11 @@ import com.example.sklad.util.CodeResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -62,11 +65,18 @@ public class ItemController {
         model.addAttribute("editing", false);
         model.addAttribute("vendors", vendorRepository.findAll());
         model.addAttribute("rooms", roomRepository.findAll());
+        model.addAttribute("item", new Item());
         return "edit";
     }
 
-    @PostMapping("saveitem")
-    public String saveEdited(@Valid Item item, Model model) {
+    @PostMapping("/saveitem")
+    public String saveEdited(@Valid Item item, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("editing", item.getRoom() != null && item.getVendor() != null && item.getName() != null && !item.getName().isEmpty());
+            model.addAttribute("vendors", vendorRepository.findAll());
+            model.addAttribute("rooms", roomRepository.findAll());
+            return "edit";
+        }
         itemRepository.save(item);
         model.addAttribute("items", itemRepository.findByRoomId(item.getRoom().getId()));
         return "items";

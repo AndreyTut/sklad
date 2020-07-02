@@ -11,6 +11,10 @@
             th:src="@{/js/jquery-2.1.4.min.js}"></script>
 </head>
 <body>
+<div class="container" th:replace="fragments/header :: header">
+    <p>header</p>
+</div>
+
 <h1>Welcome to aniger storage app</h1>
 <div class="container">
     <div class="row">
@@ -43,5 +47,9 @@
     <img src="../static/images/scanner.png"
          th:src="@{images/scanner.png}"/>
 </a>
+
+<div class="container" th:replace="fragments/footer :: footer">
+    <p>footer</p>
+</div>
 </body>
 </html>

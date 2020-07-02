@@ -18,6 +18,9 @@ public class VendorConverter implements Converter<String, Vendor> {
 
     @Override
     public Vendor convert(String s) {
+        if (s.isEmpty()) {
+            return null;
+        }
         return vendorRepository.findByNameIgnoreCase(s).orElse(new Vendor(s));
     }
 }
