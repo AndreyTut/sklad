@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Editing Item</title>
+    <title th:text="${editing ? 'Editing item' : 'Adding new item'}">Editing Item</title>
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"
           th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
 
@@ -11,14 +11,14 @@
 </head>
 <body>
 <div class="container">
-    <h2>Editing item</h2>
+    <h2 th:text="${editing ? 'Editing item' : 'Adding new item'}">Editing item</h2>
     <form class="form-horizontal" th:object="${item}" th:action="@{/saveitem}" method="post">
 
         <div class="form-group">
             <label class="col-sm-2 control-label" for="vendor">Vendor</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="vendor" name="vendor"
-                       th:value="${item!=null?item.vendor.name:''}" th:readonly="${editing}"/>
+                <input type="text" class="form-control" id="vendor" name="vendor" list="vendors"
+                       th:value="${item!=null&&item.vendor!=null?item.vendor.name:''}" th:readonly="${editing}"/>
             </div>
         </div>
 
@@ -33,8 +33,8 @@
         <div class="form-group">
             <label class="col-sm-2 control-label" for="room">Room</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="room" name="room"
-                       th:value="${item!=null?item.room.getNumber():''}" th:readonly="${editing}"/>
+                <input type="text" class="form-control" id="room" name="room" list="rooms"
+                       th:value="${item!=null&&item.room!=null?item.room.getNumber():''}" th:readonly="${editing}"/>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
             <label class="col-sm-2 control-label" for="quantity">Quantity</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="quantity" name="quantity"
-                       th:value="${item!=null?item.quantity:''}"/>
+                       th:value="${item!=null&&item.quantity!=null?item.quantity:''}"/>
             </div>
         </div>
 
@@ -51,6 +51,13 @@
 
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
+    <datalist id="vendors" th:if="${!editing}">
+        <option th:each="vendor: ${vendors}" th:value="${vendor.getName()}"/>
+    </datalist>
+
+    <datalist id="rooms" th:if="${!editing}">
+        <option th:each="room: ${rooms}" th:value="${room.getNumber()}"/>
+    </datalist>
 </div>
 </body>
 </html>

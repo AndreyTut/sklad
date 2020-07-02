@@ -13,11 +13,14 @@ public class Item extends AbstractBaseEntity {
 
     private String code;
 
+    @NotNull
     private Integer quantity;
 
+    @NotNull
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Vendor vendor;
 
+    @NotNull
     @ManyToOne(cascade = {CascadeType.PERSIST})
     private Room room;
 

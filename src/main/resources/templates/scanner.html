@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Storage</title>
+
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/js/jquery-2.1.4.min.js}"></script>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Scanning</h2>
+    <form class="form-horizontal" th:action="@{/processcode}" method="post">
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label" for="code">Code</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="code" name="code"/>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

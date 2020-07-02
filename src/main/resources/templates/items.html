@@ -22,6 +22,7 @@
         <th>Code</th>
         <th>Quantity</th>
         <th>Edit</th>
+        <th>Add</th>
     </tr>
     </thead>
     <tbody>
@@ -33,15 +34,26 @@
         <td th:text="${item.getQuantity()}">data</td>
         <td><a th:href="@{/edititem/{id}(id=${item.getId()})}">
             <img src="../static/images/pencil.png" alt="update"
-                 th:src="@{images/pencil.png}"/>
+                 th:src="@{/images/pencil.png}"/>
         </a></td>
+        <td><a th:href="@{/addexisting/{id}(id=${item.getId()})}">
+            <img src="../static/images/add.png" alt="add"
+                 th:src="@{/images/add.png}"/>
+        </a>
+        </td>
     </tr>
     </tbody>
 </table>
 <a th:href="@{/additem}">
     Add new position
     <img src="../static/images/add.png"
-         th:src="@{images/add.png}"/>
+         th:src="@{/images/add.png}"/>
+</a>
+<br/>
+<a th:href="@{/scanner}">
+    Scanner
+    <img src="../static/images/scanner.png"
+         th:src="@{/images/scanner.png}"/>
 </a>
 </body>
 </html>

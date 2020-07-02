@@ -1,12 +1,17 @@
 package com.example.sklad.model;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
 @Table(name = "vendors")
 public class Vendor extends AbstractBaseEntity {
 
+    @NotNull
+    @Size(min = 2, max = 50)
     private String name;
 
     @OneToMany(mappedBy = "vendor")
