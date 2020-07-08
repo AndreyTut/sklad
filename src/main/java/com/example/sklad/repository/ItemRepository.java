@@ -8,11 +8,11 @@ import java.util.List;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Integer> {
-    List<Item> findByVendorId(int vendorId);
+    List<Item> findByVendorIdOrderByName(int vendorId);
 
-    List<Item> findByRoomId(int roomId);
+    List<Item> findByRoomIdOrderByName(int roomId);
 
     List<Item> findByVendorIdAndRoomId(int vendorId, int RoomId);
 
-    List<Item> findItemByCode(String code);
+    List<Item> findItemByCodeOrderByName(String code);
 }

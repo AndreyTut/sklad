@@ -33,13 +33,13 @@ public class ItemController {
 
     @GetMapping("/getbyroom/{id}")
     public String getByRoom(@PathVariable int id, Model model) {
-        model.addAttribute("items", itemRepository.findByRoomId(id));
+        model.addAttribute("items", itemRepository.findByRoomIdOrderByName(id));
         return "items";
     }
 
     @GetMapping("/getbyvendor/{id}")
     public String getByVendor(@PathVariable int id, Model model) {
-        model.addAttribute("items", itemRepository.findByVendorId(id));
+        model.addAttribute("items", itemRepository.findByVendorIdOrderByName(id));
         return "items";
     }
 
@@ -78,7 +78,7 @@ public class ItemController {
             return "edit";
         }
         itemRepository.save(item);
-        model.addAttribute("items", itemRepository.findByRoomId(item.getRoom().getId()));
+        model.addAttribute("items", itemRepository.findByRoomIdOrderByName(item.getRoom().getId()));
         return "items";
     }
 
@@ -90,12 +90,14 @@ public class ItemController {
     @PostMapping("processcode")
     public String scanCode(@RequestParam String code, Model model) {
         String shortCode = CodeResolver.resolve(code);
-        List<Item> items = itemRepository.findItemByCode(shortCode);
+        List<Item> items = itemRepository.findItemByCodeOrderByName(shortCode);
         if (items.size() > 0) {
             model.addAttribute("items", items);
             return "items";
         }
-        Item item = new Item(shortCode.substring(0, 5), shortCode, null, null);
+
+        String name = shortCode.length() > 5 ? shortCode.substring(0, 5) : shortCode;
+        Item item = new Item(name, shortCode, null, null);
         model.addAttribute("item", item);
         model.addAttribute("editing", false);
         model.addAttribute("vendors", vendorRepository.findAll());
