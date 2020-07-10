@@ -9,7 +9,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>sklad</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.2</version>
     <name>sklad</name>
     <description>Storage app</description>
 
@@ -97,6 +97,6 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:AndreyTut/sklad.git</developerConnection>
-      <tag>sklad-0.0.1</tag>
+      <tag>sklad-0.0.2</tag>
   </scm>
 </project>
