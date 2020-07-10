@@ -89,6 +89,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
                     <goals>install</goals>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>
         </plugins>
@@ -96,6 +97,6 @@
 
     <scm>
         <developerConnection>scm:git:git@github.com:AndreyTut/sklad.git</developerConnection>
-      <tag>sklad-0.0.1-</tag>
+      <tag>sklad-0.0.1-SNAPSHOT</tag>
   </scm>
 </project>
